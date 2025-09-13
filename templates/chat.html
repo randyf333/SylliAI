@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}Chat - SylliAI{% endblock %}
+
+{% block content %}
+<div class="bg-white p-6 rounded-xl shadow-md">
+    <h1 class="text-2xl font-bold text-sylliai mb-4">Chat with SylliAI</h1>
+    <div id="chatbox" class="bg-gray-100 p-4 rounded-lg shadow-inner max-h-96 overflow-y-auto">
+        <div id="chat-messages">
+            <!-- Chat messages will appear here -->
+        </div>
+    </div>
+    <form id="chat-form" class="mt-4 flex">
+        <input type="text" id="chat-input" class="flex-grow p-2 border rounded-l-lg" placeholder="Type a message...">
+        <button type="submit" class="bg-sylliai text-white px-4 rounded-r-lg">Send</button>
+    </form>
+</div>
+
+<!-- Marked.js library -->
+<script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+
+
+<script>
+    // Check if marked is loaded
+    console.log("Is marked defined?", typeof marked);  // This should log 'function'
+
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+    const md = window.markdownit();
+
+
+    chatForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        // Display user message
+        const userMessage = document.createElement('div');
+        userMessage.textContent = message;
+        userMessage.className = 'text-right text-blue-500 mb-2';
+        chatMessages.appendChild(userMessage);
+
+        chatInput.value = '';
+
+        // Send message to the server
+        try {
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message })
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+                // Display error message
+                const errorMessage = document.createElement('div');
+                errorMessage.textContent = `Error: ${data.error}`;
+                errorMessage.className = 'text-left text-red-500 mb-2';
+                chatMessages.appendChild(errorMessage);
+            } else {
+                // Display AI response with markdown rendering
+                const aiMessage = document.createElement('div');
+                aiMessage.className = 'text-left text-gray-700 mb-2';
+
+                console.log("AI Response: ", data.response);
+
+                // Render markdown into HTML
+                aiMessage.innerHTML = md.render(data.response || '');
+
+                chatMessages.appendChild(aiMessage);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            const errorMessage = document.createElement('div');
+            errorMessage.textContent = 'Something went wrong. Please try again.';
+            errorMessage.className = 'text-left text-red-500 mb-2';
+            chatMessages.appendChild(errorMessage);
+        }
+
+        // Scroll to the latest message
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    });
+</script>
+{% endblock %}

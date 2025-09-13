@@ -1,0 +1,275 @@
+Syllabus for CS 2505: Intro Computer Organization
+Spring 2025
+
+The instructors of the course reserve the right to revise this syllabus during the semester. Any revisions will be promptly communicated.
+
+Instructors
+Allyson Senger
+2220C Torgersen Hall
+asenger@vt.edu
+Office Hours: MW 10am-12pm
+Siwei Cao
+2220B Torgersen Hall
+csiwei@vt.edu
+Office Hours: TR 11:00 am - 12:15 pm and F 9:30 am - 11:00 am or by appointment
+Class Room Locations
+
+CRN	Time	Room	Instructor
+13339	TR 12:30-1:45pm	SURGE 104B	Cao
+13340	TR 9:30-10:45am	GLCDB 64	Cao
+13341	MW 2:30-3:45pm	SURGE 104C	Senger
+Teaching Assistants
+GTAs
+
+Provakar Mondal	provakar@vt.edu
+Rama Alshar'	alsharerama@vt.edu
+Arman Riasi	armanriasi@vt.edu
+UTAs
+
+Hannah Aerni	hannaha@vt.edu
+Aditya Agarwal	adityaagarwal@vt.edu
+Vrishank Bangari	vrishank@vt.edu
+Alexander Brown	alexbrown26@vt.edu
+Raunak Chitre	raunakc24@vt.edu
+Zorawar Gulati	zorawar@vt.edu
+Samer Jouhar	samerjouhar@vt.edu
+Varun Kadari	vkkadari@vt.edu
+Yoonje Lee	ylee201@vt.edu
+Tia Mehta	mtia@vt.edu
+Labiba Sajjad	slabiba22@vt.edu
+Andrew Sellers	andrews05@vt.edu
+Brinda Srivatsan	brindasrivatsan@vt.edu
+Curtis Wong	wcurtis04@vt.edu
+Roman Zrajevsky	romanz@vt.edu
+TA Office Hours: Held in Torg 1230 (first floor, under the bridge) 
+
+Communication
+To contact your instructors, please use email, not the Canvas message tool. We will use Piazza for our class forum. Please do not post source code, as this could be an honor violation. General questions about the class that only the class instructor can answer, please send those as emails. For examples, particular questions about the grading of your assignment.
+
+Course Description
+An introduction to high-level computer architecture and systems concepts, system software and programming in C.
+
+Covers information representation, basic computer organization, fundamentals of the x86 architecture, the relationship between the C programming language and x86 assembly language, the use of debugging and other system tools, and the development of small- to medium-sized software solutions in C.
+
+The course will focus on the x86-64 architecture.
+
+Course Objectives
+Having successfully completed this course, the student will be able to:
+
+understand the representation of information at the hardware level,
+understand the different layers of abstraction in a computing system, i.e., logic design, computer architecture, machine language, assembly language, high level language,
+write simple to moderately complex programs in C,
+read and understand simple programs in x86 assembly language.
+be able to apply common UNIX tools, such as gdb and objdump, to analyze, debug and correct C programs,
+be able to operate efficiently in a UNIX command-line environment.
+Prerequisites/Corequisite
+A grade of C or better in CS 2114 (prerequisite)
+Math 2534, may be taken at the same time (corequisite)
+Texts and Resources
+Required Text
+Computer Systems: a Programmer’s Perspective, 3rd Edition
+Randal E Bryant & David R O’Hallaron
+Addison Wesley ©2016
+ISBN 978-0-13-409266-9
+Text book websiteLinks to an external site.
+Publisher’s WebsiteLinks to an external site.
+
+Recommended
+A Practical Guide to Linux Commands, Editors, and Shell Programming, 2nd, 3rd or 4th Ed. Mark G Sobell
+Prentice Hall ©2017
+ISBN 978-0134774602 (4th Ed.)
+available via the Safari Database in the VT LibraryLinks to an external site.
+
+C Primer Plus, 6th Edition
+Stephen Prata
+Developer’s Library ©2014
+978-0-321-92842-9
+available via the VT LibraryLinks to an external site.
+
+–or–
+
+Programming in C, 4th Edition
+Stephen G Kochan
+Developer’s Library ©2014
+978-0-321-77641-9
+Available via the VT LibraryLinks to an external site.
+
+Grading Scale
+We will follow the standard 10 point scale. In particular that means that the following final average will guarantee the corresponding letter grade.
+
+Average	Grade
+93	A
+90	A-
+87	B+
+83	B
+80	B-
+77	C+
+73	C
+70	C-
+67	D+
+63	D
+60	D-
+Below 60	F
+We reserve the right to adjust these ranges. If we do adjust them, you will only be able to receive a higher letter grade, not a lower one.
+
+Grade Distribution
+We are planning on using this distribution for our assignments
+
+Category	Weight
+Homework	20%
+Projects	40%
+Tests (2)	20%
+Final Exam	20%
+Confirmation of assignment submission is the responsibility of the student. Please check that your assignments are submitted correctly.
+
+Policies:
+
+1 homework grade will be dropped
+If your final exam score is higher than a test score, it will replace 1 test. Your final exam cannot replace both tests.
+Attendance
+You are expected to be an active participant in class discussion and other learning opportunities. To do this, you must be prepared, so be sure to complete all reading and other assignments according to schedule. The class activities have been carefully designed to help you achieve the learning outcomes for the course. Missing class or not actively participating will negatively affect your ability to learn the content.
+
+Late work
+Late work is assessed a 10% per day penalty with a maximum deduction of 50%. Generally, there will be a 5 day maximum allowance to turn in work for credit; meaning work turned in more than 5 days late will not be graded. This will be enforced this semester.
+
+Extension for Work
+If you need an extension for an authorized excuse, please fill out this formLinks to an external site.. Note that completion of the form does not guarantee you will receive the extension you are asking for (unless the extension is from the SSD office).
+
+Simply having a lot of work to do, does not constitute a reason for an extension.
+
+Being sick or some other sort of issue generally speaking does constitute a reason for an extension. You must provide some sort of documentation. If you are physically not well or are having a mental health issue, please get help and get a note. 
+
+Be aware that using an extension may negatively impact your ability to stay on track, so please only use them when absolutely needed.
+
+Software
+In this class, we are going to be using a container to access our compiler and related tools. To ease this connection we suggest using VS CodeLinks to an external site.. You can do this on the commandline if you wish. If you are on a Mac with the newer Apple Silicon chips, e.g. M1, M2, at some point later in the term you will need to connect to rlogin to be able to do the course work. More about that is coming. Please ask if you have any questions.
+
+Setting up your Development Environment
+There are some pages on the CS Wiki about rlogin:
+
+HowTo Page
+HowTo rlogin
+HowTo VSCode -> rlogin
+HowTo Contact CS Techstaff
+Topics
+Week	Date	Topic
+1
+
+ 
+
+Jan 20
+
+Course Policies and Overview
+VSCode Setup (Docker and rlogin)
+Linux: Basic Commands
+2	Jan 27	
+File Systems
+Beginning C (variables, data types, arrays, etc.)
+Compiling and Running C code (GCC)
+Basic Scripting
+ 3  	Feb 3	
+Functions
+Basic Output
+Header Files and Separate Compilations
+4	
+Feb 10
+
+C Identifier Properties
+Structs
+Numeric Bases
+Debugging in C (gdb)  
+5	Feb 17	
+Arrays in C (static and dynamic)
+Intro to Pointers
+6	Feb 24	
+Test 1 
+Pointers and Arrays (valgrind)
+ 		Drop Deadline
+7	Mar 3	
+Strings  
+String I/O Parsing
+Advanced Pointer Topics
+8	Mar 17	
+Data Representation
+Bitwise Operations
+Bash and Makefiles
+9	Mar 24	
+Intro to Computer Architecture (von Neumann)
+Intro to x86-64 Assembly 
+10  	Mar 31	
+Basic x86-64 Assembly 
+11  	Apr 7	
+Test 2
+Control Structure in x86-64 Assembly
+12	Apr 14	
+More Assembly Examples
+Memory Layout (stack)
+Debugging Assembly
+13	Apr 21	
+Functions and the Stack in Assembly
+14	Apr 28	
+Review
+15	May 5	
+Open Q + A
+ 	May 14	Final Exam (location TBD)
+Final Exam
+The Final Exam is a common-time exam. That means that all students taking CS2505 this semester will be taking the exam at the same time.
+
+The exam will be held on Wednesday, May 14 from 7:45 am - 9:45 am. 
+
+Permission from the Dean's Office is necessary to take the final exam at a different time. If you have multiple exams at the same time or more than 2 exams within 24 hours, you must attempt to reschedule the non-common-time exams first. 
+
+If you have SSD accommodations for extended time/reduced distraction environment, an alternate time and place will be provided toward the end of the semester. If you have these accommodations, you do not need additional paperwork to take the exam at an alternate time.
+
+The Virginia Tech Honor Code
+The Undergraduate Honor Code pledge that each member of the university community agrees to abide by states:
+
+“As a Hokie, I will conduct myself with honor and integrity at all times. I will not lie, cheat, or steal, nor will I accept the actions of those who do.”
+
+Students enrolled in this course are responsible for abiding by the Honor Code. A student who has doubts about how the Honor Code applies to any assignment is responsible for obtaining specific guidance from the course instructor before submitting the assignment for evaluation. Students are strongly encouraged to consult their faculty members regarding the use of any outside materials as the misuse of these sources may constitute a violation of the Honor Code. Ignorance of the rules does not exclude any member of the University community from the requirements and expectations of the Honor Code.
+
+All assignments submitted shall be considered “graded work” and all aspects of your coursework are covered by the Honor Code. All projects and homework assignments are to be completed individually in this course unless otherwise specified. All written work must be written without help from other sources or people, except for the course instructor, the course TAs, and Student Success Center tutors. It is a violation of the Honor Code in this course to receive help from any other source, including online tutoring sites (including but not limited to Chegg, CourseHero, or GroupMe), or generative AI tools (including but not limited to ChatGPT, GitHub Copilot, and Microsoft Copilot).
+
+The Academic Integrity expectations for Hokies are the same in an online class as they are in an in-person class. Hokies are expected to meet the academic integrity standards at Virginia Tech at all times.
+
+Commission of any of the following acts shall constitute academic misconduct. This listing is not, however, exclusive of other acts that may reasonably be said to constitute academic misconduct. Clarification is provided for each definition with some examples of prohibited behaviors in the Undergraduate Honor Code Manual:
+
+Cheating: Cheating includes the intentional use of unauthorized materials, information, notes, study aids or other devices or materials in any academic exercise, or attempts thereof.
+Plagiarism: Plagiarism includes the copying of the language, structure, programming, computer code, ideas, and/or thoughts of another and passing off the same as one's own original work, or attempts thereof.
+Falsification: Falsification includes the statement of any untruth, either verbally or in writing, with respect to any element of one's academic work, or attempts thereof.
+Fabrication: Fabrication includes making up data and results, and recording or reporting them, or submitting fabricated documents, or attempts thereof.
+Multiple Submission: Multiple submission involves the submission for credit – without authorization from the instructor receiving the work – of substantial portions of any work (including oral reports) previously submitted for credit at any academic institution of attempts thereof.
+Complicity: Complicity includes intentionally helping another to engage in an act of academic misconduct, or attempts thereof.
+Violation of University, College, Departmental, Program, Course, or Faculty Rules: The violation of any University, College, Departmental, Program, Course, or Faculty Rules relating to academic matters that may lead to an unfair academic advantage by the student violating the rule(s).
+Note that all electronic work submitted for this course is archived and subjected to automatic plagiarism detection and cheating analysis.
+
+If you have questions or are unclear about what constitutes academic misconduct on an assignment, please speak with your instructor. We take the Honor Code seriously in this course. The normal sanction we will recommend for a violation of the Honor Code is an F* sanction as your final course grade. The F represents failure in the course. The identifies “*” a student who has failed to uphold the values of academic integrity at Virginia Tech. A student who receives a sanction of F* as their final course grade shall have it documented on their transcript with the notation “FAILURE DUE TO ACADEMIC HONOR CODE VIOLATION.” You would be required to complete an education program administered by the Honor System in order to have the “*” and notation “FAILURE DUE TO ACADEMIC HONOR CODE VIOLATION” removed from your transcript. The “F” however would be permanently on your transcript.
+
+Academic Accommodations
+Virginia Tech welcomes students with disabilities into the University’s educational programs. The University promotes efforts to provide equal access and a culture of inclusion without altering the essential elements of coursework. If you anticipate or experience academic barriers that may be due to disability, including but not limited to ADHD, chronic or temporary medical conditions, deaf or hard of hearing, learning disability, mental health, or vision impairment, please contact the Services for Students with Disabilities (SSD) office (540-231-3788, ssd@vt.edu, or visit https://ssd.vt.edu). If you have an SSD accommodation letter, please meet with me privately during office hours as early in the semester as possible to deliver your letter and discuss your accommodations. You must give me reasonable notice to implement your accommodations, which is generally 5 business days and 10 business days for final exams.
+
+If there are aspects of this course that prevent you from learning or exclude you, please let me know as soon as possible. Together we’ll develop strategies to meet both your needs and the requirements of the course.
+
+Student Well Being
+Supporting the mental health and well-being of students in my class is of high priority to me and Virginia Tech. If you are feeling overwhelmed academically, having trouble functioning, or are worried about a friend, please reach out to any of the following offices:
+
+Cook Counseling
+
+Schedule an appointment and/or 24/7 crisis support: 540-231-6557
+https://ucc.vt.edu for more information
+Dean of Students Office
+
+General advice: 540 231-3787
+After-hours crisis: 540-231-6411
+https://dos.vt.edu for more information
+Hokie Wellness
+
+https://hokiewellness.vt.edu for more information about health and wellness workshops and consultations
+Virginia Tech Recovery Community
+Services for Students with Disabilities (SSD)
+
+Accommodations and other disability-related supports: 540-231-3788
+https://ssd.vt.edu for more information
+See a full listing of campus resources on https://well-being.vt.edu.
+
+Please also feel free to speak with me. I will make an effort to work with you; I care about your well-being and success.

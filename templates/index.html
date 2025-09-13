@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Syllabus Manager{% endblock %}
+
+{% block content %}
+<div class="text-center py-12">
+    <h1 class="text-6xl font-bold mb-4 text-sylliai-dark">Break <span class="text-black">past class rules</span> </h1>
+    <p class="text-3xl w-1/2 mb-8 mx-auto">Use SylliAI to break down the most difficult and convoluted aspects of your hardest classes.</p>
+    
+    <div class="flex justify-center space-x-8 items-center text-lg ">
+        <a href="{{ url_for('signup') }}" class="border border-2 border-sylliai text-sylliai font-bold hover:bg-sylliai hover:text-white rounded-full px-6 py-2 flex gap-2 items-center">
+            Sign Up
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 -rotate-45">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/>
+            </svg>
+        </a>
+        <a href="{{ url_for('login') }}" class="flex gap-2 font-bold hover:underline items-center">
+            Login
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+            </svg>
+        </a>
+    </div>
+    
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card">
+            <h2 class="text-xl font-semibold mb-2 text-sylliai">Upload Syllabi</h2>
+            <p>Upload your syllabi as files or text and keep them organized.</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="text-xl font-semibold mb-2 text-sylliai">Manage Courses</h2>
+            <p>Keep track of all your courses and their syllabi in one place.</p>
+        </div>
+        
+        <div class="card">
+            <h2 class="text-xl font-semibold mb-2 text-sylliai">Easy Access</h2>
+            <p>Access your syllabi anytime, anywhere from any device.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

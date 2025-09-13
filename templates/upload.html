@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload Syllabus - Syllabus Manager{% endblock %}
+
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-6">Upload Syllabus</h1>
+    
+    <form method="POST" action="{{ url_for('upload_syllabus') }}" enctype="multipart/form-data">
+        <div class="mb-4">
+            <label for="course_name" class="block text-gray-700 font-medium mb-2">Course Name</label>
+            <input type="text" id="course_name" name="course_name" required
+                   class="form-input w-full px-4 py-2 border rounded-lg">
+        </div>
+        
+        <div class="mb-4">
+            <label class="block text-gray-700 font-medium mb-2">Upload Type</label>
+            <div class="flex space-x-4">
+                <label class="inline-flex items-center">
+                    <input type="radio" name="upload_type" value="file" checked
+                           class="form-radio" onclick="toggleUploadType('file')">
+                    <span class="ml-2">File Upload</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="upload_type" value="text"
+                           class="form-radio" onclick="toggleUploadType('text')">
+                    <span class="ml-2">Text Input</span>
+                </label>
+            </div>
+        </div>
+        
+        <div id="file-upload" class="mb-4">
+            <label for="file" class="block text-gray-700 font-medium mb-2">Select File</label>
+            <input type="file" id="file" name="file"
+                   class="form-input w-full px-4 py-2 border rounded-lg">
+            <p class="text-sm text-gray-500 mt-1">Accepted formats: PDF, DOCX, TXT</p>
+        </div>
+        
+        <div id="text-upload" class="mb-4 hidden">
+            <label for="content" class="block text-gray-700 font-medium mb-2">Syllabus Content</label>
+            <textarea id="content" name="content" rows="10"
+                      class="form-input w-full px-4 py-2 border rounded-lg"></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Upload Syllabus</button>
+    </form>
+</div>
+
+<script>
+    function toggleUploadType(type) {
+        const fileUpload = document.getElementById('file-upload');
+        const textUpload = document.getElementById('text-upload');
+        
+        if (type === 'file') {
+            fileUpload.classList.remove('hidden');
+            textUpload.classList.add('hidden');
+            document.getElementById('file').required = true;
+            document.getElementById('content').required = false;
+        } else {
+            fileUpload.classList.add('hidden');
+            textUpload.classList.remove('hidden');
+            document.getElementById('file').required = false;
+            document.getElementById('content').required = true;
+        }
+    }
+</script>
+{% endblock %}

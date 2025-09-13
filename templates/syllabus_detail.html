@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ syllabus.course_name }} - SylliAI{% endblock %}
+
+{% block content %}
+<div class="bg-white p-6 rounded-xl shadow-md">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-sylliai">{{ syllabus.course_name }}</h1>
+        <div class="flex space-x-3">
+            <a href="{{ url_for('upload_document', syllabus_id=syllabus.id) }}" class="btn btn-secondary">Upload Document</a>
+            <a href="{{ url_for('delete_syllabus', syllabus_id=syllabus.id) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this syllabus?');">Delete Syllabus</a>
+        </div>
+    </div>
+    
+    <!-- Syllabus content section -->
+    <div class="mb-6">
+        <div class="bg-gray-50 p-4 rounded-lg">
+            <h2 class="text-lg font-semibold mb-2">Syllabus Information</h2>
+            <div class="mb-2">
+                <span class="font-medium">Content Type:</span> {{ syllabus.content_type|capitalize }}
+            </div>
+            {% if syllabus.content_type == 'text' and syllabus.content %}
+                <div class="mt-4 p-3 bg-white rounded border">
+                    <p>{{ syllabus.content|nl2br }}</p>
+                </div>
+            {% elif syllabus.content_type == 'file' and syllabus.file_path %}
+                <div class="mt-2">
+                    <p>File uploaded: {{ syllabus.file_path.split('/')[-1] }} 
+                        <a href="{{ url_for('view_syllabus_file', syllabus_id=syllabus.id) }}" target="_blank" class="text-sylliai hover:underline ml-2">View File</a>
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="mb-6">
+        <h2 class="text-lg font-semibold mb-3">Related Documents</h2>
+        {% if documents %}
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-3 px-4 text-left">Document Name</th>
+                            <th class="py-3 px-4 text-left">Type</th>
+                            <th class="py-3 px-4 text-left">Date Added</th>
+                            <th class="py-3 px-4 text-left">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        {% for document in documents %}
+                            <tr>
+                                <td class="py-3 px-4">{{ document.name }}</td>
+                                <td class="py-3 px-4">{{ document.content_type|capitalize }}</td>
+                                <td class="py-3 px-4">{{ document.created_at|default('N/A') }}</td>
+                                <td class="py-3 px-4">
+                                    <a href="{{ url_for('view_document', document_id=document.id) }}" class="text-sylliai hover:underline mr-2">View</a>
+                                    <a href="{{ url_for('delete_document', document_id=document.id) }}" class="text-red-600 hover:underline">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-gray-600">No additional documents uploaded for this course.</p>
+        {% endif %}
+    </div>
+    
+    <!-- Chatbot Section -->
+    <div class="mt-8">
+        <h2 class="text-lg font-semibold mb-3">Chat with SylliAI</h2>
+        <div id="chatbox" class="bg-gray-100 p-4 rounded-lg shadow-inner max-h-96 overflow-y-auto">
+            <div id="chat-messages">
+                <!-- Chat messages will appear here -->
+            </div>
+        </div>
+        <form id="chat-form" class="mt-4 flex">
+            <input type="text" id="chat-input" class="flex-grow p-2 border rounded-l-lg" placeholder="Ask a question about this syllabus...">
+            <button type="submit" class="bg-sylliai text-white px-4 rounded-r-lg">Send</button>
+        </form>
+    </div>
+</div>
+
+<!-- Marked.js library -->
+<script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+
+<script>
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+    const md = window.markdownit();
+
+    chatForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        // Display user message
+        const userMessage = document.createElement('div');
+        userMessage.textContent = message;
+        userMessage.className = 'text-right text-blue-500 mb-2';
+        chatMessages.appendChild(userMessage);
+
+        chatInput.value = '';
+
+        // Send message to the server
+        try {
+            const response = await fetch(`/syllabus/{{ syllabus.id }}/chat`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message })
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+                // Display error message
+                const errorMessage = document.createElement('div');
+                errorMessage.textContent = `Error: ${data.error}`;
+                errorMessage.className = 'text-left text-red-500 mb-2';
+                chatMessages.appendChild(errorMessage);
+            } else {
+                // Display AI response with markdown rendering
+                const aiMessage = document.createElement('div');
+                aiMessage.className = 'text-left text-gray-700 mb-2';
+                aiMessage.innerHTML = md.render(data.response || '');
+                chatMessages.appendChild(aiMessage);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            const errorMessage = document.createElement('div');
+            errorMessage.textContent = 'Something went wrong. Please try again.';
+            errorMessage.className = 'text-left text-red-500 mb-2';
+            chatMessages.appendChild(errorMessage);
+        }
+
+        // Scroll to the latest message
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    });
+</script>
+{% endblock %}

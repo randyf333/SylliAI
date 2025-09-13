@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
+.form-input {
+  @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-xl text-white font-medium;
+}
+
+.btn-primary {
+  @apply bg-sylliai hover:bg-sylliai-dark;
+}
+
+.btn-secondary {
+  @apply bg-gray-600 hover:bg-gray-700;
+}
+
+.alert {
+  @apply p-4 mb-4 rounded-md;
+}
+
+.alert-success {
+  @apply bg-green-100 text-green-700;
+}
+
+.alert-error {
+  @apply bg-red-100 text-red-700;
+}
+
+/* SylliAI specific styles */
+.sylliai-bg-light {
+  @apply bg-sylliai-light;
+}
+
+.sylliai-text {
+  @apply text-sylliai;
+}
+
+.sylliai-border {
+  @apply border-sylliai;
+}
+
+.card {
+  @apply bg-white p-6 rounded-xl shadow-md;
+}
+
+.text-box {
+  @apply w-full p-3 border rounded-md border-gray-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+}
